@@ -90,4 +90,5 @@ label[for="box"]:hover {
   --my-color: rgb(255, 160, 160);
   box-shadow: 0 0 5px 5px var(--my-color);
   background: var(--my-color);
+  border-radius: 10px;
 }
