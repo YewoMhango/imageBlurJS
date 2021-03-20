@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Different Image Blurring Implementations</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./boxBlur.js"></script>
+    <script src="./boxBlur2.js"></script>
+    <script src="./boxBlur3.js"></script>
+    <script src="./boxBlur4.js"></script>
+    <script src="./stackBlur.js"></script>
+    <script src="./stackBlur2.js"></script>
+    <script src="./stackBlur3.js"></script>
+    <script src="./script.js"></script>
+  </head>
+  <body>
+    <hr />
+    <section>
+      <button class="input" onclick="startLoad()">Input an Image</button>
+    </section>
+    <hr />
+    <main hidden>
+      <section>
+        <div class="image">
+          <div class="main-img-cont"></div>
+          <button onclick="saveImage()">
+            <img src="./Download.svg" alt="Download" />
+          </button>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <label
+          for="box"
+          title="The basic box blur can be very slow, especially at higher blur radiuses and for bigger images. As such, it could freeze your browser tab"
+        >
+          <input type="radio" id="box" name="algorithm" value="box" />
+          Basic Box Blur
+        </label>
+        <label for="box2">
+          <input type="radio" id="box2" name="algorithm" value="box2" />
+          Optimized Box Blur
+        </label>
+        <label for="box3">
+          <input type="radio" id="box3" name="algorithm" value="box3" />
+          Optimized Box Blur 2
+        </label>
+        <label for="box4">
+          <input type="radio" id="box4" name="algorithm" value="box4" />
+          Multiplied Box Blur
+        </label>
+        <label for="stack">
+          <input type="radio" id="stack" name="algorithm" value="stack" />
+          Stackblur
+        </label>
+        <label for="stack2">
+          <input type="radio" id="stack2" name="algorithm" value="stack2" />
+          Optimized Stackblur
+        </label>
+        <label for="stack3">
+          <input type="radio" id="stack3" name="algorithm" value="stack3" />
+          Multiplied Stackblur
+        </label>
+      </section>
+      <hr />
+      <section>
+        <div class="blur-radius">
+          <div>
+            Blur radius:
+            <span class="radius">0</span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="255"
+            value="0"
+            onchange="radiusChanged()"
+          />
+        </div>
+      </section>
+      <hr />
+      <section class="time-taken">Time Taken: <strong></strong></section>
+      <hr />
+    </main>
+  </body>
+</html>
