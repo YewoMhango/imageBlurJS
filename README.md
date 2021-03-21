@@ -1,6 +1,6 @@
 # Fast Image Blurring with Javascript 
 
-This is a simple, browser-based image blurring program purely in Javascript. It uses boxblur and stackblur algorithms, and each algorithm has multiple implementations, of differing speeds. For further reference on how the algorithms work, refer to the next section.
+This is a simple, browser-based image blurring program purely in Javascript. It uses boxblur and stackblur algorithms, and each algorithm has multiple implementations, of differing speeds. For further reading on how the algorithms work, refer to the references.
 
 ## References
 
