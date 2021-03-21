@@ -1,10 +1,3 @@
-function radiusChanged() {
-  document.querySelector(
-    ".blur-radius span.radius"
-  ).innerHTML = document.querySelector(".blur-radius input").value;
-  performFiltering();
-}
-
 const algorithms = {
   box: boxBlur,
   box2: optimizedBoxBlur,
@@ -19,7 +12,9 @@ let loadedImage;
 let filteredImage;
 
 /**
- * A representation of an RGB Image
+ * A representation of an RGB Image. I choose to create a 
+ * special class so that each color band could be stored in
+ * a separate Array to simplify the blurring code.
  */
 class RGBImage {
   /**
@@ -60,6 +55,16 @@ class RGBImage {
       image.height
     );
   }
+}
+
+/**
+ * Responds to the `onchange` event on the radius selector
+ */
+function radiusChanged() {
+  document.querySelector(
+    ".blur-radius span.radius"
+  ).innerHTML = document.querySelector(".blur-radius input").value;
+  performBlurring();
 }
 
 /**
@@ -182,7 +187,7 @@ function displayImage(image, container_name) {
   console.log("Time taken to display image:", elapsed / 1000, "s");
 }
 
-function performFiltering() {
+function performBlurring() {
   let radius = Number(document.querySelector(".blur-radius input").value);
 
   if (radius == 0) {
