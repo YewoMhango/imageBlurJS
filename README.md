@@ -21,7 +21,7 @@ In the resulting folder, open the `index.html` file in your favoured browser and
   4. You can change the radius multiple times and switch between different algorithms to compare
   5. You can download the blurred image by clicking on the button that appears at its top-right corner when you hover on it
 
-On the list of algorithms, the ones which are further right are generally the ones which perform faster. As you can see, whenever you change the blur radius, the time taken to blur it will be displayed at the bottom. You can use this to make comparisons between different configurations. 
+On the list of algorithms, the ones which are further right are generally the ones which perform faster. As you can see, whenever you change the blur radius, the time taken to blur it will be displayed at the bottom. You can use this to make comparisons between different configurations. There's also a sample image included which you can use for testing.
 
 ## References
 
