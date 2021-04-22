@@ -1,9 +1,25 @@
+// This version calculates the average by multiplying
+// instead of dividing. It depends on the fact that
+//
+//     dividend/divisor = dividend*(1/divisor)
+//
+// As such, we can just compute `1/divisor` ahead of time
+// and multiply the resulting value with the sum instead.
+//
+// This results in improved perfomance since division is
+// a more costly operation than multiplication. As such,
+// another area where this code differs from the other
+// box blurs is that the number of pixels used is fixed.
+// Therefore, at the edges of the picture, to make up
+// the same number of pixels, the outermost one is added
+// enough times to make up the same number of pixels
+
 /**
  * Further optimized box blur
  *
  * ---
  * @param {RGBImage} image Image to be blurred
- * @param {String} band Image band/channel to blur
+ * @param {"red" | "blue" | "green"} band Image band/channel to blur
  * @param {Number} radius Blur radius
  *
  * ---
@@ -17,12 +33,19 @@ function multipliedBoxBlur(image, band, radius) {
   let firstNewBand = new Uint8ClampedArray(width * height);
 
   for (let h = 0; h < height; h++) {
+    // No more need for pixelCount since the number of "pixels"
+    // virtually considered will be the same throughout
     let sum = 0;
 
+    // First we add the first pixel enough times to
+    // complement the other pixels to make up the
+    // (radius * 2) + 1 elements required...
     for (let j = 1; j <= radius + 1; j++) {
       sum += chosenBand[width * h];
     }
 
+    // ...then the following pixels within the required
+    // radius of the pixel are added
     for (let j = 1; j <= radius; j++) {
       sum += chosenBand[width * h + j];
     }

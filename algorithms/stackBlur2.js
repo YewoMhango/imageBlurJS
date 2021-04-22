@@ -1,3 +1,11 @@
+// This function uses the classic stackblur algorithm by Mario
+// Klingemann, including `mul_table`, `shg_table` and all. This
+// delivers the fastest performance but the drawback is that the
+// blur radius is limited to 255 due to the lengths of `mul_table`
+// and `shg_table`. To go beyond 255, it would require extending
+// them with more values... or by not using `mul_table` and
+// `shg_table` altogether, as we'll see in the next function
+
 // prettier-ignore
 const mul_table = new Uint16Array([
   512,512,512,456,328,456,335,512,405,328,271,456,388,335,292,512,
@@ -43,7 +51,7 @@ const shg_table = new Uint8Array([
  *
  * ---
  * @param {RGBImage} image Image to be blurred
- * @param {String} band Image band/channel to blur
+ * @param {"red" | "blue" | "green"} band Image band/channel to blur
  * @param {Number} radius Blur radius
  *
  * ---

@@ -1,9 +1,15 @@
+// A naive, first implementation of the basic box blur algorithm,
+// which just sums all the numbers in a "moving window" for each
+// pixel and divides by their count to find the average. It quickly
+// gets very slow as radius increases since the complexity of
+// determining the sum is O(r²) with respect to radius r
+
 /**
  * Basic box blur
  *
  * ---
  * @param {RGBImage} image Image to be blurred
- * @param {String} band Image band/channel to blur
+ * @param {"red" | "blue" | "green"} band Image band/channel to blur
  * @param {Number} radius Blur radius
  *
  * ---
@@ -16,7 +22,7 @@ function boxBlur(image, band, radius) {
 
   for (let i = 0, h = 0; h < height; h++) {
     for (let w = 0; w < width; w += 1, i += 1) {
-      let cellCount = 0,
+      let pixelCount = 0,
         sum = 0;
 
       for (let m = -radius; m <= radius; m++) {
@@ -24,13 +30,13 @@ function boxBlur(image, band, radius) {
           if (
             !(m + h >= height || m + h <= -1 || n + w >= width || n + w <= -1)
           ) {
-            cellCount++;
+            pixelCount++;
             sum += chosenBand[i + (width * m + n)];
           }
         }
       }
 
-      newBand.push(Math.round(sum / cellCount));
+      newBand.push(Math.round(sum / pixelCount));
     }
   }
 

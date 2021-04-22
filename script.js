@@ -1,3 +1,6 @@
+/**
+ * A "map" of all the functions for the algorithms which are used
+ */
 const algorithms = {
   box: boxBlur,
   box2: optimizedBoxBlur,
@@ -5,14 +8,20 @@ const algorithms = {
   box4: multipliedBoxBlur,
   stack: stackBlur,
   stack2: optimizedStackBlur,
-  stack3: optimizedStackBlur2,
+  stack3: multipliedStackblur,
 };
 
+/**
+ * A global variable representing the original image loaded by the user
+ */
 let loadedImage;
-let filteredImage;
+/**
+ * A global variable representing the blurred image
+ */
+let blurredImage;
 
 /**
- * A representation of an RGB Image. I choose to create a 
+ * A representation of an RGB Image. I chose to create a
  * special class so that each color band could be stored in
  * a separate Array to simplify the blurring code.
  */
@@ -58,7 +67,7 @@ class RGBImage {
 }
 
 /**
- * Responds to the `onchange` event on the radius selector
+ * Responds to the `onchange` event on the radius slider
  */
 function radiusChanged() {
   document.querySelector(
@@ -124,6 +133,11 @@ function pictureFromImage(image) {
   let green = new Uint8ClampedArray(width * height);
   let blue = new Uint8ClampedArray(width * height);
 
+  // The `data` property of the ImageData class is one
+  // array which stores all the pixel values in `r, g, b,
+  // a` subsequences for each pixel. However, we want to
+  // split the data into 3 separate arrays for red, green
+  // and blue while ignoring the alpha channel
   for (let i = 0; i < data.length; i += 4) {
     let [r, g, b] = data.slice(i, i + 3);
     red[i / 4] = r;
@@ -170,6 +184,13 @@ function displayImage(image, container_name) {
 
   let data = new Uint8ClampedArray(width * height * 4);
 
+  // Whereas our `RGBImage` class stores data for the
+  // three channels/bands in three separate arrays, the
+  // `ImageData` class stores them in one array of `r, g,
+  // b, a` subsequences for each pixel. As such we have
+  // to combine the three arrays into one, and we just
+  // assign values of 255 for the alpha channel for an
+  // opacity of 100%
   for (let i = 0; i < width * height * 4; i += 4) {
     data[i] = image.red[i / 4];
     data[i + 1] = image.green[i / 4];
@@ -207,10 +228,15 @@ function performBlurring() {
 
     let start = Date.now();
 
-    filteredImage = blurFunction(
-      blurFunction(blurFunction(loadedImage, "green", radius), "blue", radius),
-      "red",
-      radius
+    // prettier-ignore
+    blurredImage = 
+      blurFunction(
+        blurFunction(
+          blurFunction(loadedImage, "green", radius), 
+          "blue", 
+          radius),
+        "red",
+        radius
     );
 
     let elapsed = (Date.now() - start) / 1000;
@@ -218,7 +244,7 @@ function performBlurring() {
     document.querySelector("section.time-taken strong").innerText =
       elapsed + "s";
 
-    displayImage(filteredImage, ".main-img-cont");
+    displayImage(blurredImage, ".main-img-cont");
   }
 }
 
@@ -236,17 +262,18 @@ function saveImage() {
 }
 
 /**
- * Creates and returns an HTML Element of the type `type`
+ * A helper function that creates and returns an HTML Element of the type `type`
  *
  * ---
  * @param {String} type Type of `HTMLElement` to be created
- * @param {Object} props Properties of the `HTMLElement` to be created
+ * @param {Object} props Optional properties of the `HTMLElement` to be created
  * @param  {...HTMLElement} children Optional HTML Elements to be assigned as children of this element
  *
  * ---
  * @returns {HTMLElement} An `HTMLElement` object
  */
 function elt(type, props, ...children) {
+  if (!type) throw new TypeError("Empty HTMLElement type: " + type);
   let dom = document.createElement(type);
   if (props) Object.assign(dom, props);
   for (let child of children) {

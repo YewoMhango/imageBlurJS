@@ -1,15 +1,32 @@
+// This function, unlike the true, original stackblur,
+// finds the average by simply multiplying the sum
+// with `multiplier`, where
+//
+//      multiplier = 1 / (radius * (radius + 2) + 1)
+//
+// Here, radius * (radius + 2) + 1 is the count of
+// elements in the virtual "stack" of pixel values. As
+// such, since we calculate 1/count ahead of time, we
+// can just multiply it with the sum, for every pixel,
+// instead of dividing (which is a slower operation) or
+// using bitwise operators as in the original stackblur.
+//
+// This is method is slightly slower than the bitwise
+// operator method but its main advantage is that we
+// can now use any blur radius beyond 255
+
 /**
  * Blurs an image using the Stackblur algorithm
  *
  * ---
  * @param {RGBImage} image Image to be blurred
- * @param {String} band Image band/channel to blur
+ * @param {"red" | "blue" | "green"} band Image band/channel to blur
  * @param {Number} radius Blur radius
  *
  * ---
  * @returns {RGBImage} A blurred image
  */
-function optimizedStackBlur2(image, band, radius) {
+function multipliedStackblur(image, band, radius) {
   const { width, height } = image;
   let firstNewBand = new Uint8ClampedArray(width * height);
   const chosenBand = image[band];
