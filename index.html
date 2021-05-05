@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Different Image Blurring Implementations</title>
     <link rel="stylesheet" href="./style.css" />
-    <script src="./algorithms/boxBlur.js"></script>
-    <script src="./algorithms/boxBlur2.js"></script>
-    <script src="./algorithms/boxBlur3.js"></script>
-    <script src="./algorithms/boxBlur4.js"></script>
-    <script src="./algorithms/stackBlur.js"></script>
-    <script src="./algorithms/stackBlur2.js"></script>
-    <script src="./algorithms/stackBlur3.js"></script>
-    <script src="./script.js"></script>
   </head>
   <body>
     <hr />
@@ -55,13 +47,13 @@
           <input type="radio" id="stack" name="algorithm" value="stack" />
           Stackblur
         </label>
-        <label for="stack2">
-          <input type="radio" id="stack2" name="algorithm" value="stack2" />
-          Optimized Stackblur
-        </label>
         <label for="stack3">
           <input type="radio" id="stack3" name="algorithm" value="stack3" />
           Multiplied Stackblur
+        </label>
+        <label for="stack2">
+          <input type="radio" id="stack2" name="algorithm" value="stack2" />
+          Optimized Stackblur
         </label>
       </section>
       <hr />
@@ -84,5 +76,13 @@
       <section class="time-taken">Time Taken: <strong></strong></section>
       <hr />
     </main>
+    <script src="./algorithms/boxBlur.js"></script>
+    <script src="./algorithms/boxBlur2.js"></script>
+    <script src="./algorithms/boxBlur3.js"></script>
+    <script src="./algorithms/boxBlur4.js"></script>
+    <script src="./algorithms/stackBlur.js"></script>
+    <script src="./algorithms/stackBlur2.js"></script>
+    <script src="./algorithms/stackBlur3.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
