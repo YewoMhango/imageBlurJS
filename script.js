@@ -77,7 +77,7 @@ function radiusChanged() {
 }
 
 /**
- * Starts the process of loading an image when the `Input a file` button is clicked
+ * Starts the process of loading an image when the `Load an image` button is clicked
  */
 function startLoad() {
   let input = elt("input", {
