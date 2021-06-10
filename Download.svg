@@ -1,185 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="5.7601209mm"
-   height="7.8384047mm"
-   viewBox="0 0 5.7601209 7.8384046"
-   version="1.1"
-   id="svg8"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="6.5321312mm" height="7.9375mm"
+   viewBox="0 0 6.5321312 7.9375" version="1.1" id="svg8" inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
    sodipodi:docname="Download.svg">
-  <defs
-     id="defs2">
-    <inkscape:path-effect
-       effect="fillet_chamfer"
-       id="path-effect914"
-       is_visible="true"
-       lpeversion="1"
-       satellites_param="F,0,0,1,0,0.396875,0,1 @ F,0,0,1,0,0.396875,0,1 @ F,0,0,1,0,0.396875,0,1 @ F,0,0,1,0,0.396875,0,1"
-       unit="px"
-       method="auto"
-       mode="F"
-       radius="1.5"
-       chamfer_steps="1"
-       flexible="false"
-       use_knot_distance="true"
-       apply_no_radius="true"
-       apply_with_radius="true"
-       only_selected="false"
-       hide_knots="false" />
-    <inkscape:path-effect
-       effect="fillet_chamfer"
-       id="path-effect912"
-       is_visible="true"
-       lpeversion="1"
-       satellites_param="F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1"
-       unit="px"
-       method="auto"
-       mode="F"
-       radius="2"
-       chamfer_steps="1"
-       flexible="false"
-       use_knot_distance="true"
-       apply_no_radius="true"
-       apply_with_radius="true"
-       only_selected="false"
-       hide_knots="false" />
-    <inkscape:path-effect
-       effect="fillet_chamfer"
-       id="path-effect910"
-       is_visible="true"
-       lpeversion="1"
-       satellites_param="F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1 @ F,0,0,1,0,0.52916667,0,1"
-       unit="px"
-       method="auto"
-       mode="F"
-       radius="2"
-       chamfer_steps="1"
-       flexible="false"
-       use_knot_distance="true"
-       apply_no_radius="true"
-       apply_with_radius="true"
-       only_selected="false"
-       hide_knots="false" />
-  </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="21.910443"
-     inkscape:cy="9.5651772"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     inkscape:document-rotation="0"
-     showgrid="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     showguides="false"
-     inkscape:guide-bbox="true"
-     inkscape:snap-bbox="true"
-     inkscape:bbox-paths="true"
-     inkscape:bbox-nodes="true"
-     inkscape:snap-bbox-midpoints="true"
-     inkscape:snap-bbox-edge-midpoints="true"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1">
-    <sodipodi:guide
-       position="2.8799241,4.7806872"
-       orientation="0,-1"
-       id="guide839" />
-    <sodipodi:guide
-       position="2.8799241,4.7806872"
-       orientation="1,0"
-       id="guide841" />
-    <sodipodi:guide
-       position="2.8800604,0.22692094"
-       orientation="0,-1"
-       id="guide843" />
-    <sodipodi:guide
-       position="13.489379,3.6186296"
-       orientation="1,0"
-       id="guide876" />
-    <sodipodi:guide
-       position="19.532233,2.6293567"
-       orientation="1,0"
-       id="guide878" />
-    <sodipodi:guide
-       position="2.8799241,8.2365086"
-       orientation="0,-1"
-       id="guide871" />
-    <sodipodi:guide
-       position="2.8799241,1.3248658"
-       orientation="0,-1"
-       id="guide873" />
-    <sodipodi:guide
-       position="-0.50087003,0.22692094"
-       orientation="1,0"
-       id="guide877" />
-    <sodipodi:guide
-       position="6.2609907,0.22692094"
-       orientation="1,0"
-       id="guide879" />
-    <sodipodi:guide
-       position="2.8799241,1.3248658"
-       orientation="-0.70710678,-0.70710678"
-       id="guide885" />
-    <sodipodi:guide
-       position="2.8799241,1.3248658"
-       orientation="0.70710678,-0.70710678"
-       id="guide887" />
-    <sodipodi:guide
-       position="5.6772534,4.1221952"
-       orientation="0,-1"
-       id="guide889" />
-  </sodipodi:namedview>
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-65.775387,-59.185178)">
-    <g
-       id="g896"
-       transform="translate(1.8007721e-5,0.05660726)">
-      <path
-         style="fill:none;stroke:#ffffff;stroke-width:0.864675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 65.775369,66.534638 H 71.53549"
-         id="path881"
-         sodipodi:nodetypes="cc" />
-      <path
-         style="fill:none;stroke:#ffffff;stroke-width:0.864675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 68.655311,59.128571 v 5.976323"
-         id="path883" />
-      <path
-         style="fill:none;stroke:#ffffff;stroke-width:0.864675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 66.236532,62.686114 2.418779,2.41878 2.41878,-2.41878"
-         id="path891" />
-    </g>
-  </g>
+   <defs id="defs2" />
+   <metadata id="metadata5">
+      <rdf:RDF>
+         <cc:Work rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+            <dc:title></dc:title>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+   <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-69.348177,-184.95052)">
+      <path id="rect861"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.63028;stroke-linecap:square;stroke-linejoin:round;stroke-dashoffset:18.8976;paint-order:markers stroke fill"
+         d="m 71.20888,184.95052 v 2.72842 h -1.860703 l 3.266067,3.26607 3.266064,-3.26607 h -1.860703 v -2.72842 c -0.936909,0 -1.873816,0 -2.810725,0 z m -1.860703,6.90427 v 1.03323 c 2.177377,0 4.354754,0 6.532131,0 v -1.03323 c -2.177377,0 -4.354754,0 -6.532131,0 z"
+         sodipodi:nodetypes="ccccccccccccc" />
+   </g>
 </svg>
