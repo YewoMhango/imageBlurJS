@@ -56,7 +56,7 @@ function multipliedBoxBlur(image, band, radius) {
       let currentPos = width * h + w;
 
       if (w > radius + 1) {
-        sum -= chosenBand[currentPos - radius - 2];
+        sum -= chosenBand[currentPos - radius - 1];
       } else {
         sum -= chosenBand[width * h];
       }
