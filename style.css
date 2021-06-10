@@ -97,7 +97,7 @@ div.image button img {
 
 label[for="box"]:hover {
   padding: 0;
-  --my-color: rgb(255, 160, 160);
+  --my-color: rgb(255, 190, 190);
   box-shadow: 0 0 5px 5px var(--my-color);
   background: var(--my-color);
   border-radius: 10px;

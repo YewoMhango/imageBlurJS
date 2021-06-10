@@ -20,6 +20,10 @@ let loadedImage;
 * A global variable representing the blurred image
 */
 let blurredImage;
+/**
+ * Is true when a user has confirmed that they are sure they want to use the slow basic box blur
+ */
+let confirmedBasicBox = false; 
 
 /**
 * A representation of an RGB Image. I chose to create a
@@ -235,6 +239,14 @@ function performBlurring() {
     }
 
     selected = selected.value;
+    
+    if (selected == "box") {
+      if (!confirmedBasicBox && !confirm("⚠ WARNING:\nThe Basic box blur can be so slow that it could freeze your browser tab. \nAre you sure you want to continue?")) {
+        return;
+      } else {
+        confirmedBasicBox = true; 
+      }
+    }
 
     let blurFunction = algorithms[selected];
 
