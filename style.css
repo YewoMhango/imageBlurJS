@@ -92,7 +92,7 @@ div.image button img {
 
 .main-img-cont canvas {
   max-width: 100%;
-  max-height: ;
+  max-height: 70vh;
 }
 
 label[for="box"]:hover {
