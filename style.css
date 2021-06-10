@@ -102,3 +102,9 @@ label[for="box"]:hover {
   background: var(--my-color);
   border-radius: 10px;
 }
+
+@media screen and (max-width: 500px)  {
+  body {
+    font-size: 0.8em;
+  }
+}
