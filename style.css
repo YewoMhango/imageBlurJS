@@ -92,12 +92,12 @@ div.image button img {
 
 .main-img-cont canvas {
   max-width: 100%;
-  max-height: 70vh;
+  max-height: ;
 }
 
 label[for="box"]:hover {
   padding: 0;
-  --my-color: rgb(255, 45, 45);
+  --my-color: rgb(255, 160, 160);
   box-shadow: 0 0 5px 5px var(--my-color);
   background: var(--my-color);
   border-radius: 10px;
