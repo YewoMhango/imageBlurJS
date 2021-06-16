@@ -6,18 +6,16 @@ It is not necessarily meant to be a standalone web app but rather to test and de
 
 ## Usage
 
-You can check out the live version of this project on my personal Github page [here](https://yewomhango.github.io/imageBlurJS/). To use it, you can follow these steps:
+You can check out a live version of this project on my personal Github page [here](https://yewomhango.github.io/imageBlurJS/). To use it, follow these steps:
 
   1. Click on `Load an Image` to load an image into the program
-  2. Select one of the seven algorithms to run it on the image.
+  2. Select one of the eight algorithms to run it on the image.
 
 **Please note that the `Basic Box Blur` is so slow that it can cause your browser to freeze, especially for higher blur radius values and for bigger images. It is mainly there to demonstrate how poorly a naive implementation can perform. Ideally, you should only use it with a small blur radius, and the image shouldn't be too big.**
 
   3. Move the slider to change the blur radius and see the resulting image
   4. You can change the radius multiple times and switch between different algorithms to compare
   5. You can download the blurred image by clicking on the button that appears at its top-right corner when you hover on it
-
-On the list of algorithms, the ones which are further right are generally the ones which perform faster. As you can see, whenever you change the blur radius, the time taken to blur it will be displayed at the bottom. You can use this to make comparisons between different configurations. There's also a sample image included which you can use for testing in this project's folder.
 
 ## References
 
