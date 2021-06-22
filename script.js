@@ -15,6 +15,13 @@ let webWorkers = [
   new Worker("blurWorker.js"),
 ];
 
+for (let worker of webWorkers) {
+  worker.addEventListener("error", (e) => {
+    alert(e.message);
+    document.querySelector('input[type="range"]').disabled = false;
+  });
+}
+
 /**
  * A representation of an RGB Image. I chose to create a
  * special class so that each color band could be stored in
@@ -68,7 +75,12 @@ function radiusChanged() {
   document.querySelector(
     ".blur-radius span.radius"
   ).innerHTML = document.querySelector(".blur-radius input").value;
-  performBlurring();
+  try {
+    performBlurring();
+  } catch (e) {
+    document.querySelector('input[type="range"]').disabled = false;
+    alert(e.message);
+  }
 }
 
 /**
