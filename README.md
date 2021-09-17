@@ -1,6 +1,6 @@
 # Fast Image Blurring with Javascript 
 
-This is a simple, browser-based image blurring program with all the processing done purely in client-side Javascript. It uses boxblur and stackblur algorithms, and each algorithm has multiple implementations, of differing speeds. For further reading on how the algorithms work, refer to the [references](#references). 
+This is a simple, browser-based image blurring program with all the processing done purely in client-side Javascript and WebAssembly. It uses boxblur and stackblur algorithms, and each algorithm has multiple implementations, of differing speeds. For further reading on how the algorithms work, refer to the [references](#references). 
 
 It is not necessarily meant to be a standalone web app but rather to test and demonstrate the possibility of blurring images in the browser and the optimizations that can be done along the way. You are free to use it to develop your own programs.
 
