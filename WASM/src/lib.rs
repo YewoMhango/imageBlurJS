@@ -5,7 +5,7 @@ fn handle_panic(_: &core::panic::PanicInfo) -> ! {
     loop {}
 }
 
-const MAX_SIZE: usize = 10_000 * 10_000;
+const MAX_SIZE: usize = 5_000 * 5_000;
 
 #[no_mangle]
 static mut BUFFER: [u8; MAX_SIZE] = [0; MAX_SIZE];
