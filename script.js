@@ -5,7 +5,11 @@ let loadedImage;
 /**
  * Is true when a user has confirmed that they are sure they want to use the slow basic box blur
  */
-let confirmedBasicBox = false;
+let confirmedToUseBasicBoxBlur = false;
+/**
+ * Is true when a user has confirmed that they are sure they want to use the optimized box blur
+ */
+let confirmedToUseOptimizedBoxBlur = false;
 /**
  * An array of web workers for performing the processing in parallel
  */
@@ -19,7 +23,7 @@ for (let worker of webWorkers) {
   worker.addEventListener("error", (e) => {
     alert(e.message);
     document.querySelector('input[type="range"]').disabled = false;
-    document.querySelector(".load-anim").style.display = "none"
+    document.querySelector(".load-anim").style.display = "none";
   });
 }
 
@@ -73,14 +77,13 @@ class RGBImage {
  * Responds to the `onchange` event on the radius slider
  */
 function radiusChanged() {
-  document.querySelector(
-    ".blur-radius span.radius"
-  ).innerHTML = document.querySelector(".blur-radius input").value;
+  document.querySelector(".blur-radius span.radius").innerHTML =
+    document.querySelector(".blur-radius input").value;
   try {
     performBlurring();
   } catch (e) {
     document.querySelector('input[type="range"]').disabled = false;
-    document.querySelector(".load-anim").style.display = "none"
+    document.querySelector(".load-anim").style.display = "none";
     alert(e.message);
   }
 }
@@ -171,13 +174,8 @@ function displayLoadedImage(image) {
   let minDimension = Math.min(image.height - 1, image.width - 1, 255);
 
   document.querySelector(".blur-radius input").max = minDimension;
-  document.querySelector(
-    ".blur-radius .radius"
-  ).innerHTML = document.querySelector(".blur-radius input").value;
-  
-  if (image.width * image.height > 3000 * 3000) {
-    alert("Please note that very big images like this one could possibly lead to your browser tab freezing or out of memory errors, especially on a mobile or low-spec device")
-  }
+  document.querySelector(".blur-radius .radius").innerHTML =
+    document.querySelector(".blur-radius input").value;
 }
 
 /**
@@ -245,14 +243,28 @@ function performBlurring() {
 
     if (selected == "box") {
       if (
-        !confirmedBasicBox &&
+        !confirmedToUseBasicBoxBlur &&
         !confirm(
           "⚠ WARNING:\nThe Basic box blur can be so slow that it could freeze your browser tab. \nAre you sure you want to continue?"
         )
       ) {
         return;
       } else {
-        confirmedBasicBox = true;
+        confirmedToUseBasicBoxBlur = true;
+      }
+    }
+
+    if (selected == "box2") {
+      if (
+        !confirmedToUseOptimizedBoxBlur &&
+        loadedImage.width * loadedImage.height > 2000 * 2000 &&
+        !confirm(
+          '⚠ WARNING:\nThe "optimized box blur" can sometimes lead to out of memory exceptions, especially with big images like this one and on a mobile or low-spec device. \nAre you sure you want to continue?'
+        )
+      ) {
+        return;
+      } else {
+        confirmedToUseOptimizedBoxBlur = true;
       }
     }
 
@@ -286,8 +298,7 @@ function performBlurring() {
 
           displayImage(blurredImage, ".main-img-cont");
           document.querySelector('input[type="range"]').disabled = false;
-          document.querySelector(".load-anim").style.display = "none"
-
+          document.querySelector(".load-anim").style.display = "none";
         }
 
         webWorkers[index].removeEventListener("message", closure);
