@@ -172,6 +172,10 @@ function displayLoadedImage(image) {
   document.querySelector(
     ".blur-radius .radius"
   ).innerHTML = document.querySelector(".blur-radius input").value;
+  
+  if (image.width * image.height > 3000 * 3000) {
+    alert("Please note that very big images like this one could possibly lead to your browser tab freezing or out of memory errors, especially on a mobile or low-spec device")
+  }
 }
 
 /**
