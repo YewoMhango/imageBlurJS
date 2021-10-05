@@ -19,6 +19,7 @@ for (let worker of webWorkers) {
   worker.addEventListener("error", (e) => {
     alert(e.message);
     document.querySelector('input[type="range"]').disabled = false;
+    document.querySelector(".load-anim").style.display = "none"
   });
 }
 
@@ -79,6 +80,7 @@ function radiusChanged() {
     performBlurring();
   } catch (e) {
     document.querySelector('input[type="range"]').disabled = false;
+    document.querySelector(".load-anim").style.display = "none"
     alert(e.message);
   }
 }
@@ -257,6 +259,7 @@ function performBlurring() {
     let start = Date.now();
 
     document.querySelector('input[type="range"]').disabled = true;
+    document.querySelector(".load-anim").style.display = "flex";
 
     let finishedWorkers = 0;
     let result = {};
@@ -283,6 +286,8 @@ function performBlurring() {
 
           displayImage(blurredImage, ".main-img-cont");
           document.querySelector('input[type="range"]').disabled = false;
+          document.querySelector(".load-anim").style.display = "none"
+
         }
 
         webWorkers[index].removeEventListener("message", closure);
