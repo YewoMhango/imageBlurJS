@@ -23,7 +23,7 @@ for (let worker of webWorkers) {
   worker.addEventListener("error", (e) => {
     alert(e.message);
     document.querySelector('input[type="range"]').disabled = false;
-    document.querySelector(".load-anim").style.display = "none";
+    document.querySelector(".image").removeAttribute("loading");
   });
 }
 
@@ -83,7 +83,7 @@ function radiusChanged() {
     performBlurring();
   } catch (e) {
     document.querySelector('input[type="range"]').disabled = false;
-    document.querySelector(".load-anim").style.display = "none";
+    document.querySelector(".image").removeAttribute("loading");
     alert(e.message);
   }
 }
@@ -135,6 +135,7 @@ function finishLoad(file) {
  */
 function pictureFromImage(image) {
   let width = image.width;
+  let originalWidth = width;
   let height = image.height;
   let canvas = elt("canvas", {
     width,
@@ -143,6 +144,24 @@ function pictureFromImage(image) {
   let cx = canvas.getContext("2d");
   cx.drawImage(image, 0, 0);
   let { data } = cx.getImageData(0, 0, width, height);
+
+  let scale = 1;
+
+  if (
+    width * height > 2160 * 2160 &&
+    document.querySelector("input#scale-down").checked == true
+  ) {
+    //console.log(width, height, scale);
+    scale = Math.pow(
+      2,
+      Math.floor(Math.log2(Math.sqrt(width * height) / 1080))
+    );
+    width = Math.floor(width / scale);
+    height = Math.floor(height / scale);
+    //console.log(width, height, scale);
+  }
+
+  //console.log(width, height);
 
   let red = new Uint8ClampedArray(width * height);
   let green = new Uint8ClampedArray(width * height);
@@ -153,12 +172,17 @@ function pictureFromImage(image) {
   // a` subsequences for each pixel. However, we want to
   // split the data into 3 separate arrays for red, green
   // and blue while ignoring the alpha channel
-  for (let i = 0; i < data.length; i += 4) {
-    let [r, g, b] = data.slice(i, i + 3);
-    red[i / 4] = r;
-    green[i / 4] = g;
-    blue[i / 4] = b;
+
+  for (let h = 0; h < height; h++) {
+    for (let w = 0; w < width; w++) {
+      let i1 = w + h * width;
+      let i2 = (w + h * originalWidth) * scale * 4;
+      red[i1] = data[i2];
+      green[i1] = data[i2 + 1];
+      blue[i1] = data[i2 + 2];
+    }
   }
+  
   return new RGBImage(red, green, blue, width, height);
 }
 
@@ -169,7 +193,7 @@ function pictureFromImage(image) {
  * @param {RGBImage} image The image to display
  */
 function displayLoadedImage(image) {
-  displayImage(image, ".main-img-cont");
+  displayImage(image);
 
   let minDimension = Math.min(image.height - 1, image.width - 1, 255);
 
@@ -183,14 +207,13 @@ function displayLoadedImage(image) {
  *
  * ---
  * @param {RGBImage} image Image to be displayed
- * @param {String} container_name CSS selector of the container in which the image will be displayed
  */
-function displayImage(image, container_name) {
+function displayImage(image) {
   let { width, height } = image;
 
   let start = Date.now();
 
-  let container = document.querySelector(container_name);
+  let container = document.querySelector(".main-img-cont");
   container.innerHTML = "";
 
   let canvas = elt("canvas", {
@@ -229,7 +252,7 @@ function performBlurring() {
   let radius = Number(document.querySelector(".blur-radius input").value);
 
   if (radius == 0) {
-    displayImage(loadedImage, ".main-img-cont");
+    displayImage(loadedImage);
   } else {
     let options = document.querySelectorAll('input[type="radio"]');
     let selected = Array.from(options).find((elt) => elt.checked == true);
@@ -271,7 +294,7 @@ function performBlurring() {
     let start = Date.now();
 
     document.querySelector('input[type="range"]').disabled = true;
-    document.querySelector(".load-anim").style.display = "flex";
+    document.querySelector(".image").setAttribute("loading", "true");
 
     let finishedWorkers = 0;
     let result = {};
@@ -296,9 +319,9 @@ function performBlurring() {
             loadedImage.height
           );
 
-          displayImage(blurredImage, ".main-img-cont");
+          displayImage(blurredImage);
           document.querySelector('input[type="range"]').disabled = false;
-          document.querySelector(".load-anim").style.display = "none";
+          document.querySelector(".image").removeAttribute("loading");
         }
 
         webWorkers[index].removeEventListener("message", closure);
