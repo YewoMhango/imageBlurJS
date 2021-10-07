@@ -280,7 +280,7 @@ function performBlurring() {
     if (selected == "box2") {
       if (
         !confirmedToUseOptimizedBoxBlur &&
-        loadedImage.width * loadedImage.height > 2000 * 2000 &&
+        loadedImage.width * loadedImage.height > 1080 * 1080 &&
         !confirm(
           '⚠ WARNING:\nThe "optimized box blur" can sometimes lead to out of memory exceptions, especially with big images like this one and on a mobile or low-spec device. \nAre you sure you want to continue?'
         )
