@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fast Blurring in Javascript</title>
     <link rel="stylesheet" href="./style.css" />
-    <script src="./script.js" defer></script>
+    <script src="./js/main.js" defer type="module"></script>
   </head>
   <body>
     <hr />
     <section>
-      <button class="input" onclick="startLoad()">Load an Image</button>
+      <button class="input load-image">Load an Image</button>
     </section>
     <hr />
     <main hidden>
       <section>
         <div class="image">
           <div class="main-img-cont"></div>
-          <button onclick="saveImage()">
+          <button class="save-image-button">
             <img src="./Download.svg" alt="Download" />
           </button>
-          <div class="load-anim">
+          <div class="load-animation">
             <table>
               <tr>
                 <td id="one"></td>
@@ -42,23 +42,24 @@
         </div>
       </section>
       <hr />
-      <section>
+      <section id="algorithms">
         <label
+          class="slower"
           for="box"
           title="The basic box blur can be very slow, especially at higher blur radiuses and for bigger images. As such, it could freeze your browser tab"
         >
           <input type="radio" id="box" name="algorithm" value="box" />
           Basic Box Blur
         </label>
-        <label for="box2">
+        <label class="slower" for="box2">
           <input type="radio" id="box2" name="algorithm" value="box2" />
           Optimized Box Blur
         </label>
-        <label for="box3">
+        <label class="slower" for="box3">
           <input type="radio" id="box3" name="algorithm" value="box3" />
           Further Optimized Box Blur
         </label>
-        <label for="box4">
+        <label class="slower" for="box4">
           <input type="radio" id="box4" name="algorithm" value="box4" />
           Multiplied Box Blur
         </label>
@@ -67,15 +68,15 @@
           Box Blur (WASM)
         </label>
         <br />
-        <label for="stack">
+        <label class="slower" for="stack">
           <input type="radio" id="stack" name="algorithm" value="stack" />
           Stackblur
         </label>
-        <label for="stack3">
+        <label class="slower" for="stack3">
           <input type="radio" id="stack3" name="algorithm" value="stack3" />
           Multiplied Stackblur
         </label>
-        <label for="stack2">
+        <label class="slower" for="stack2">
           <input type="radio" id="stack2" name="algorithm" value="stack2" />
           Optimized Stackblur
         </label>
@@ -89,7 +90,7 @@
           Stackblur (WASM)
         </label>
         <br />
-        <label for="gaussian">
+        <label class="slower" for="gaussian">
           <input type="radio" id="gaussian" name="algorithm" value="gaussian" />
           Gaussian Blur
         </label>
@@ -111,11 +112,11 @@
             <span class="radius">0</span>
           </div>
           <input
+            class="radius-slider"
             type="range"
             min="0"
             max="255"
             value="0"
-            onchange="radiusChanged()"
           />
         </div>
       </section>
@@ -123,11 +124,36 @@
       <section class="time-taken">Time Taken: <strong></strong></section>
       <hr />
     </main>
-    <section class="scale-down">
+    <section class="scale-down-and-show-slower">
       <label for="scale-down"
         ><input type="checkbox" name="scale-down" id="scale-down" checked />
         Scale down big images</label
       >
+      <label for="show-slower">
+        <input
+          type="checkbox"
+          id="show-slower"
+          onchange="toggleSlowAlgorithmVisibility()"
+        />
+        Show slower algorithms
+      </label>
+      <script>
+        toggleSlowAlgorithmVisibility();
+
+        function toggleSlowAlgorithmVisibility() {
+          let slower = document.querySelectorAll(".slower");
+          let checkbox = document.querySelector("#show-slower");
+          let lineBreaks = document.querySelectorAll("#algorithms br");
+
+          if (checkbox.checked) {
+            slower.forEach((e) => (e.hidden = false));
+            lineBreaks.forEach((e) => (e.hidden = false));
+          } else {
+            slower.forEach((e) => (e.hidden = true));
+            lineBreaks.forEach((e) => (e.hidden = true));
+          }
+        }
+      </script>
     </section>
     <hr />
   </body>

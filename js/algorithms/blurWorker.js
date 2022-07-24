@@ -1,4 +1,8 @@
 /**
+ * This is a Web Worker file which contains all the blurring algorithms
+ */
+
+/**
  * A "map" of all the functions for the algorithms which are used
  */
 let algorithms = {
@@ -6,10 +10,13 @@ let algorithms = {
   box2: optimizedBoxBlur,
   box3: furtherOptimizedBoxBlur,
   box4: multipliedBoxBlur,
+  boxWasm: null,
   stack: stackBlur,
   stack2: optimizedStackBlur,
   stack3: multipliedStackblur,
+  stackWasm: null,
   gaussian: fauxGaussianBlur,
+  gaussianWasm: null,
 };
 
 addEventListener("message", (event) => {
@@ -696,6 +703,9 @@ function fauxGaussianBlur(band, width, height, radius) {
   );
 }
 
+/**
+ * This loads the WebAssembly code
+ */
 async function initWasm() {
   let { instance } = await WebAssembly.instantiateStreaming(
     fetch("./blur.wasm")
@@ -704,22 +714,7 @@ async function initWasm() {
   let buffer_address = instance.exports.BUFFER.value;
   const MAX_SIZE = instance.exports.get_max_size();
 
-  /**
-   *
-   * @param {Uint8ClampedArray} band
-   * @param {Number} width
-   * @param {Number} height
-   * @param {Number} radius
-   */
-  algorithms.boxWasm = function (band, width, height, radius) {
-    if (width * height > MAX_SIZE) {
-      throw new Error(
-        "The image exceeds the maximum size in pixels supported by these WASM functions (" +
-          MAX_SIZE +
-          " pixels)"
-      );
-    }
-
+  function instantiateMemory(width, height, band) {
     let memory = new Uint8ClampedArray(
       instance.exports.memory.buffer,
       buffer_address,
@@ -729,9 +724,30 @@ async function initWasm() {
     for (let i = 0; i < band.length; i++) {
       memory[i] = band[i];
     }
+    return memory;
+  }
 
+  function checkMaxSize(width, height) {
+    if (width * height > MAX_SIZE) {
+      throw new Error(
+        "The image exceeds the maximum size in pixels supported by this WASM function (" +
+          MAX_SIZE +
+          " pixels)"
+      );
+    }
+  }
+
+  /**
+   *
+   * @param {Uint8ClampedArray} band
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} radius
+   */
+  algorithms.boxWasm = function (band, width, height, radius) {
+    checkMaxSize(width, height);
+    let memory = instantiateMemory(width, height, band);
     instance.exports.box_blur(width, height, radius);
-
     return new Uint8ClampedArray(memory);
   };
 
@@ -743,26 +759,9 @@ async function initWasm() {
    * @param {Number} radius
    */
   algorithms.stackWasm = function (band, width, height, radius) {
-    if (width * height > MAX_SIZE) {
-      throw new Error(
-        "The image exceeds the maximum size in pixels supported by these WASM functions (" +
-          MAX_SIZE +
-          " pixels)"
-      );
-    }
-
-    let memory = new Uint8ClampedArray(
-      instance.exports.memory.buffer,
-      buffer_address,
-      width * height
-    );
-
-    for (let i = 0; i < band.length; i++) {
-      memory[i] = band[i];
-    }
-
+    checkMaxSize(width, height);
+    let memory = instantiateMemory(width, height, band);
     instance.exports.stack_blur(width, height, radius);
-
     return new Uint8ClampedArray(memory);
   };
   /**
@@ -773,23 +772,8 @@ async function initWasm() {
    * @param {Number} radius
    */
   algorithms.gaussianWasm = function (band, width, height, radius) {
-    if (width * height > MAX_SIZE) {
-      throw new Error(
-        "The image exceeds the maximum size in pixels supported by these WASM functions (" +
-          MAX_SIZE +
-          " pixels)"
-      );
-    }
-
-    let memory = new Uint8ClampedArray(
-      instance.exports.memory.buffer,
-      buffer_address,
-      width * height
-    );
-
-    for (let i = 0; i < band.length; i++) {
-      memory[i] = band[i];
-    }
+    checkMaxSize(width, height);
+    let memory = instantiateMemory(width, height, band);
 
     instance.exports.box_blur(width, height, radius);
     instance.exports.box_blur(width, height, radius);

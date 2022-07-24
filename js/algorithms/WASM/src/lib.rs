@@ -5,10 +5,14 @@ fn handle_panic(_: &core::panic::PanicInfo) -> ! {
     loop {}
 }
 
+/// Maximum Size of the image
 const MAX_SIZE: usize = 3_000 * 3_000;
 
+/// Where the data will be written to between JS and WebAssembly
 #[no_mangle]
 static mut BUFFER: [u8; MAX_SIZE] = [0; MAX_SIZE];
+
+/// Intermediate array where processing results will be stored temporarily
 static mut SECOND_BAND: [u8; MAX_SIZE] = [0; MAX_SIZE];
 
 #[no_mangle]
@@ -16,6 +20,8 @@ pub extern "C" fn get_max_size() -> usize {
     MAX_SIZE as usize
 }
 
+/// The box blur function. Refer to the blurWorker.js file for an
+/// evolution of how it works
 #[no_mangle]
 pub unsafe extern "C" fn box_blur(width: u32, height: u32, radius: u32) {
     for h in 0..height {
@@ -65,6 +71,8 @@ pub unsafe extern "C" fn box_blur(width: u32, height: u32, radius: u32) {
     }
 }
 
+/// The stackblur function. Refer back to the blurWorker.js file for an
+/// evolution of how it works
 #[no_mangle]
 pub unsafe extern "C" fn stack_blur(width: u32, height: u32, radius: u32) {
     const MUL_TABLE: [u16; 256] = [
