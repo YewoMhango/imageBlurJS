@@ -6,7 +6,7 @@ import { displayImage } from "./displayImage.js";
 /**
  * Starts the process of loading an image when the `Input a file` button is clicked
  */
-function startLoad() {
+export function startLoad() {
   let input = create("input", {
     type: "file",
     onchange: () => finishLoad(input.files[0]),
