@@ -4,6 +4,20 @@ import { create } from "./create.js";
 import { displayImage } from "./displayImage.js";
 
 /**
+ * Starts the process of loading an image when the `Input a file` button is clicked
+ */
+function startLoad() {
+  let input = create("input", {
+    type: "file",
+    onchange: () => finishLoad(input.files[0]),
+    accept: "image/*",
+  });
+  document.body.appendChild(input);
+  input.click();
+  input.remove();
+};
+
+/**
  * Reads a selected file and translates it into an `RGBImage` as the global variable `loadedImage`
  *
  * ---
