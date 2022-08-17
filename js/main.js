@@ -1,7 +1,7 @@
 import { create } from "./create.js";
 import { displayImage } from "./displayImage.js";
 import RGBImage from "./RGBImage.js";
-import { finishLoad } from "./imageLoader.js";
+import { startLoad } from "./imageLoader.js";
 
 /**
  * A global variable representing the original image loaded by the user
@@ -55,19 +55,8 @@ document.querySelector(".radius-slider").onclick = function radiusChanged() {
   }
 };
 
-/**
- * Starts the process of loading an image when the `Input a file` button is clicked
- */
-document.querySelector(".load-image").onclick = function startLoad() {
-  let input = create("input", {
-    type: "file",
-    onchange: () => finishLoad(input.files[0]),
-    accept: "image/*",
-  });
-  document.body.appendChild(input);
-  input.click();
-  input.remove();
-};
+// Starts the process of loading an image when the `Input a file` button is clicked
+document.querySelector(".load-image").onclick = startLoad
 
 /**
  * Allow user to download image
