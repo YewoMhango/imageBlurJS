@@ -43,7 +43,7 @@ export function setLoadedImage(image) {
 /**
  * Responds to the `onchange` event on the radius slider
  */
-document.querySelector(".radius-slider").onclick = function radiusChanged() {
+document.querySelector(".radius-slider").onchange = function radiusChanged() {
   document.querySelector(".blur-radius span.radius").innerHTML =
     document.querySelector(".blur-radius input").value;
   try {
