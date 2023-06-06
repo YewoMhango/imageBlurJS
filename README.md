@@ -12,6 +12,11 @@ You can check out a live version [here](https://yewomhango.github.io/imageBlurJS
   4. You can change the radius multiple times and switch between different algorithms to compare
   5. You can download the blurred image by clicking on the button that appears at its top-right corner when you hover on it
 
+## Concepts Used
+
+ - WebAssembly
+ - Web Workers (multithreading)
+
 ## References
 
   1. [How to Blur an Image on Android](https://medium.com/mobile-app-development-publication/blurring-image-algorithm-example-in-android-cec81911cd5e)
